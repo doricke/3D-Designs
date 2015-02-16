@@ -1,0 +1,44 @@
+<h1>Attributes</h1>
+
+<table cellpadding="2" cellspacing="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Value</th>
+      <th></th>
+      <% if session[:is_owner] -%>
+        <th></th>
+        <th></th>
+      <% end -%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attribute_values.each do |attribute_value| %>
+      <tr>
+        <td><%= @attributes_hash[attribute_value.attribute_id].attribute_name if ! attribute_value.attribute_id.nil? %></td>
+        <% case attribute_value.attribute_type -%>
+          <% when 'int' -%>
+            <td><%= attribute_value.attribute_int %></td>
+          <% when 'float' -%>
+            <td><%= attribute_value.attribute_float %></td>
+          <% when 'string' -%>
+            <td><%= attribute_value.attribute_string %></td>
+          <% when 'boolean' -%>
+            <td><%= attribute_value.attribute_boolean %></td>
+          <% else -%>
+            <td></td>
+          <% end -%>
+        <td><%= link_to 'Show', attribute_value %></td>
+        <% if session[:is_owner] -%>
+          <td><%= link_to 'Edit', edit_attribute_value_path(attribute_value) %></td>
+          <td><%= link_to 'Destroy', attribute_value, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attribute value', new_attribute_value_path if (! session[:design_id].nil?) && (! session[:user_id].nil?) %>

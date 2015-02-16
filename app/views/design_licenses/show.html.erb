@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Design:</strong>
+  <%= @design_license.design_id %>
+</p>
+
+<p>
+  <strong>License:</strong>
+  <%= @design_license.license_id %>
+</p>
+
+<%= link_to 'Edit', edit_design_license_path(@design_license) %> |
+<%= link_to 'Back', design_licenses_path %>

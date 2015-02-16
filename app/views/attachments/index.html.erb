@@ -1,0 +1,40 @@
+<h1>Files</h1>
+
+<!-- table cellpadding="0" cellspacing="0" border="0" class="display dataTable" id="example" -->
+<table cellpadding="2" cellspacing="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>File name</th>
+      <th>Description</th>
+      <th>Downloads</th>
+      <th>Updated at</th>
+      <th></th>
+      <th></th>
+      <% if session[:is_owner] -%>
+        <th></th>
+        <th></th>
+      <% end -%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attachments.each do |attachment| %>
+      <tr>
+        <td><%= attachment.file_name %></td>
+        <td><%= attachment.description %></td>
+        <td align="center"><%= attachment.downloads %></td>
+        <td><%= attachment.updated_at %></td>
+        <td><%= link_to 'Show', attachment %></td>
+        <td><%= link_to 'Download', :id => attachment.id, :method => :download, :action => :download %></td>
+        <% if session[:is_owner] -%>
+          <td><%= link_to 'Edit', edit_attachment_path(attachment) %></td>
+          <td><%= link_to 'Destroy', attachment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attachment', new_attachment_path if (! session[:design_id].nil?) && (! session[:user_id].nil?) %>

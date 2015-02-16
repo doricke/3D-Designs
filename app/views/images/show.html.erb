@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead></thead>
+  <tbody>
+    <tr>
+      <td><strong>Design:</strong></td>
+      <td><%= @design.design_name if ! @design.nil? %></td>
+    </tr><tr>
+      <td><strong>Image name:</strong></td>
+      <td><%= @image.image_name %></td>
+    </tr><tr>
+      <td><strong>Description:</strong></td>
+      <td><%= @image.description %></td>
+    </tr>
+  </tbody>
+</table>
+<br />
+
+<p>
+  <%= link_to image_tag(url_for(:controller => :images, :action => :show_img, :id => @image.id)) %>
+</p>
+
+<%= link_to 'Back', design_path(@design) %>

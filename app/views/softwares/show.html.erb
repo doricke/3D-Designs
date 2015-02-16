@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Software name:</strong>
+  <%= @software.software_name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @software.description %>
+</p>
+
+<pre>
+  <%= @attachment.view if ! @attachment.nil? %>
+</pre>
+
+<%= link_to 'Edit', edit_software_path(@software) %> |
+<%= link_to 'Back', softwares_path %>

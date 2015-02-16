@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>License name:</strong>
+  <%= @license.license_name %>
+</p>
+
+<p>
+  <strong>License version:</strong>
+  <%= @license.license_version %>
+</p>
+
+<p>
+  <strong>License url:</strong>
+  <%= @license.license_url %>
+</p>
+
+<% if session[:is_admin] -%>
+  <%= link_to 'Edit', edit_license_path(@license) %> |
+<% end -%>
+<%= link_to 'Back', licenses_path %>

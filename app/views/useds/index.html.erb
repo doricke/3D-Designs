@@ -1,0 +1,35 @@
+<h1>Designs Useds</h1>
+
+<table cellpadding="2" cellspacing="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Notes</th>
+      <th>Created at</th>
+      <th></th>
+      <% if session[:is_owner] -%>
+        <th></th>
+        <th></th>
+      <% end -%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @useds.each do |used| %>
+      <tr>
+        <td><%= @users_hash[used.user_id].name if ! used.user_id.nil? %></td>
+        <td><%= used.notes.html_safe if ! used.notes.nil? %></td>
+        <td><%= used.created_at %></td>
+        <td><%= link_to 'Show', used %></td>
+        <% if session[:is_owner] -%>
+          <td><%= link_to 'Edit', edit_used_path(used) %></td>
+          <td><%= link_to 'Destroy', used, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Used', new_used_path if (! session[:design_id].nil?) && (! session[:user_id].nil?) %>

@@ -1,0 +1,29 @@
+<h1>Design Licenses</h1>
+
+<table cellpadding="2" cellspacing="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>Design</th>
+      <th>License</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @design_licenses.each do |design_license| %>
+      <tr>
+        <td><%= design_license.design_id %></td>
+        <td><%= design_license.license_id %></td>
+        <td><%= link_to 'Show', design_license %></td>
+        <td><%= link_to 'Edit', edit_design_license_path(design_license) %></td>
+        <td><%= link_to 'Destroy', design_license, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Design license', new_design_license_path if (! session[:design_id].nil?) && (! session[:user_id].nil?) %>

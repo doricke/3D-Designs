@@ -1,0 +1,43 @@
+<%= form_for(@instrument, :html => {:multipart=>true}) do |f| %>
+  <% if @instrument.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@instrument.errors.count, "error") %> prohibited this instrument from being saved:</h2>
+
+      <ul>
+      <% @instrument.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table>
+    <thead></thead>
+    <tbody>
+      <tr>
+  <div class="field">
+    <td><%= f.label :instrument_type_id %></td>
+    <td><%= f.collection_select(:instrument_type_id, @instrument_types, :id, :category) %></td>
+  </div>
+      </tr><tr>
+  <div class="field">
+    <td><%= f.label :instrument_name %></td>
+    <td><%= f.text_field :instrument_name, :size => 40 %></td>
+  </div>
+      </tr><tr>
+  <div class="field">
+    <td><%= f.label :instrument_model %></td>
+    <td><%= f.text_field :instrument_model, :size => 40 %></td>
+  </div>
+      </tr><tr>
+  <div class="field">
+    <td><%= f.label :image %></td>
+    <td><%= f.file_field("datafile") %></td>
+  </div>
+      </tr>
+    </tbody>
+  </table>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

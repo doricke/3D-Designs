@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Design:</strong>
+  <%= @attribute_value.design_id %>
+</p>
+
+<p>
+  <strong>Attribute:</strong>
+  <%= @attribute_value.attribute_id %>
+</p>
+
+<p>
+  <strong>Attribute type:</strong>
+  <%= @attribute_value.attribute_type %>
+</p>
+
+<p>
+  <strong>Attribute int:</strong>
+  <%= @attribute_value.attribute_int %>
+</p>
+
+<p>
+  <strong>Attribute float:</strong>
+  <%= @attribute_value.attribute_float %>
+</p>
+
+<p>
+  <strong>Attribute string:</strong>
+  <%= @attribute_value.attribute_string %>
+</p>
+
+<p>
+  <strong>Attribute boolean:</strong>
+  <%= @attribute_value.attribute_boolean %>
+</p>
+
+<%= link_to 'Edit', edit_attribute_value_path(@attribute_value) %> |
+<%= link_to 'Back', attribute_values_path %>

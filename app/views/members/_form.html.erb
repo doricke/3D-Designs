@@ -1,0 +1,27 @@
+<%= form_for(@member) do |f| %>
+  <% if @member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+      <ul>
+      <% @member.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table>
+  <thead></thead>
+  <tbody>
+    <tr>
+  <div class="field">
+    <td><%= f.label :user_id %></td>
+    <td><%= f.collection_select(:user_id, @users, :id, :name) %></td>
+  </div>
+    </tr>
+  </tbody>
+</table>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

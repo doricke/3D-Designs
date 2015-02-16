@@ -1,0 +1,34 @@
+<h1>Videos</h1>
+
+<table cellpadding="2" cellspacing="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>Video name</th>
+      <th>Video description</th>
+      <th></th>
+      <% if session[:is_owner] -%>
+        <th></th>
+        <th></th>
+      <% end -%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @videos.each do |video| %>
+      <tr>
+        <td><%= video.video_name %></td>
+        <td><%= video.video_description %></td>
+        <td><%= link_to 'Watch', {:action => :show_video, :id => video.id}, {:method => :get} %></td>
+        <% if session[:is_owner] -%>
+          <td><%= link_to 'Edit', edit_video_path(video) %></td>
+          <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<!-- %= link_to 'New Video', new_video_path # if (! session[:design_id].nil?) && (! session[:user_id].nil?) % -->
+<%= link_to 'New Video', new_video_path %>

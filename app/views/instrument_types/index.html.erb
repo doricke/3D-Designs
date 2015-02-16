@@ -1,0 +1,31 @@
+<h1>Instrument Types</h1>
+
+<table cellpadding="2" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th></th>
+      <% if session[:is_admin] -%>
+        <th></th>
+        <th></th>
+      <% end -%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @instrument_types.each do |instrument_type| %>
+      <tr>
+        <td><%= instrument_type.category %></td>
+        <td><%= link_to 'Show', instrument_type %></td>
+        <% if session[:is_admin] -%>
+          <td><%= link_to 'Edit', edit_instrument_type_path(instrument_type) %></td>
+          <td><%= link_to 'Destroy', instrument_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Instrument type', new_instrument_type_path if (! session[:user_id].nil?) %>

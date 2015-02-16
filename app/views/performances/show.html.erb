@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Design:</strong>
+  <%= @performance.design_id %>
+</p>
+
+<p>
+  <strong>Attachment:</strong>
+  <%= @performance.attachment_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @performance.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @performance.description %>
+</p>
+
+<p>
+  <strong>Metric:</strong>
+  <%= @performance.metric %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @performance.rating %>
+</p>
+
+<p>
+  <strong>Updated at:</strong>
+  <%= @performance.updated_at %>
+</p>
+
+<%= link_to 'Edit', edit_performance_path(@performance) %> |
+<%= link_to 'Back', performances_path %>

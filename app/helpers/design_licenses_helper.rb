@@ -1,0 +1,2 @@
+module DesignLicensesHelper
+end

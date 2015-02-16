@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead></thead>
+  <tbody>
+    <tr>
+<p>
+  <td><strong>User:</strong></td>
+  <td><%= @comment.user.name %></td>
+</p>
+    </tr><tr>
+<p>
+  <td><strong>Rating:</strong></td>
+  <td><%= @comment.rating %></td>
+</p>
+    </tr><tr>
+<p>
+  <td><strong>Updated at:</strong></td>
+  <td><%= @comment.updated_at %></td>
+</p>
+    </tr><tr>
+<p>
+  <td><strong>Comments:</strong></td>
+  <td><%= @comment.comments %></td>
+</p>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_comment_path(@comment) %> |
+<%= link_to 'Back', comments_path %>

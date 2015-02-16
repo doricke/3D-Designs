@@ -1,0 +1,54 @@
+<h1>Designs</h1>
+
+<table cellpadding="2" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Team</th>
+      <th>Instrument</th>
+      <th>Design name</th>
+      <th>Revision</th>
+      <th>Rating</th>
+      <th>Views</th>
+      <th>Downloads</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th></th>
+      <% if session[:user_id] -%>
+        <th></th>
+        <th></th>
+      <% end -%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @designs.each do |design| %>
+      <tr align="center">
+        <td><%= @users_hash[design.user_id].name if ! @users_hash[design.user_id].nil? %></td>
+        <td><%= @teams_hash[design.team_id].team_name if ! @teams_hash[design.team_id].nil? %></td>
+        <td><%= @instruments_hash[design.instrument_id].instrument_name if ! @instruments_hash[design.instrument_id].nil? %></td>
+        <td><%= design.design_name %></td>
+        <td><%= design.revision %></td>
+        <td><%= design.rating %></td>
+        <td><%= design.views %></td>
+        <td><%= design.downloads %></td>
+        <td><%= Tools.to_ampm(design.created_at) %></td>
+        <td><%= Tools.to_ampm(design.updated_at) %></td>
+        <td><%= link_to 'Show', design %></td>
+        <% if session[:user_id] -%>
+          <% if design.user_id == session[:user_id] -%>
+            <td><%= link_to 'Edit', edit_design_path(design) %></td>
+            <td><%= link_to 'Destroy', design, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else -%>
+            <td></td>
+            <td></td>
+          <% end -%>
+        <% end -%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Design', new_design_path if (! session[:user_id].nil?) %>

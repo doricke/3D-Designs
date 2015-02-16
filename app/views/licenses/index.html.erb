@@ -1,0 +1,35 @@
+<h1>Licenses</h1>
+
+<table cellpadding="2" cellspacing="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>License name</th>
+      <th>License version</th>
+      <th>License url</th>
+      <th></th>
+      <% if session[:is_admin] -%>
+        <th></th>
+        <th></th>
+      <% end -%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @licenses.each do |license| %>
+      <tr>
+        <td><%= license.license_name %></td>
+        <td align="center"><%= license.license_version %></td>
+        <td><%= license.license_url %></td>
+        <td><%= link_to 'Show', license %></td>
+        <% if session[:is_admin] -%>
+          <td><%= link_to 'Edit', edit_license_path(license) %></td>
+          <td><%= link_to 'Destroy', license, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New License', new_license_path if (! session[:user_id].nil?) %>

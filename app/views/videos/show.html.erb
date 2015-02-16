@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Video name:</strong>
+  <%= @video.video_name %>
+</p>
+
+<p>
+  <strong>Video description:</strong>
+  <%= @video.video_description %>
+</p>
+
+<p>
+  <strong>Updated at:</strong>
+  <%= @video.updated_at %>
+</p>
+
+<p>
+  <strong>Movie:</strong>
+  <%= video_tag(@video.video_name, :controls => true) %>
+</p>
+
+<%= link_to 'Edit', edit_video_path(@video) %> |
+<%= link_to 'Back', videos_path %>

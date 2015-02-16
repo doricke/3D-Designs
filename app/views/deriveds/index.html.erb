@@ -1,0 +1,31 @@
+<h1>Derived Designs</h1>
+
+<table cellpadding="2" cellspacing="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>Design</th>
+      <th>Source</th>
+      <th>Derived type</th>
+      <th></th>
+      <!-- th></th>
+      <th></th -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @deriveds.each do |derived| %>
+      <tr>
+        <td><%= derived.design_id %></td>
+        <td><%= derived.source_id %></td>
+        <td><%= derived.derived_type %></td>
+        <td><%= link_to 'Show', derived %></td>
+        <!-- td><%= link_to 'Edit', edit_derived_path(derived) %></td>
+        <td><%= link_to 'Destroy', derived, method: :delete, data: { confirm: 'Are you sure?' } %></td -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Derived', new_derived_path if (! session[:design_id].nil?) && (! session[:user_id].nil?) %>

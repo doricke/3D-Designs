@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Instrument type:</strong>
+  <%= @instrument_types_hash[@instrument.instrument_type_id].category if ! @instrument.instrument_type_id.nil? %>
+</p>
+
+<p>
+  <strong>Instrument name:</strong>
+  <%= @instrument.instrument_name %>
+</p>
+
+<p>
+  <strong>Instrument model:</strong>
+  <%= @instrument.instrument_model %>
+</p>
+
+<p>
+  <%= link_to image_tag(url_for(:controller => :images, :action => :show_img, :id => @instrument.image_id)) if ! @instrument.image_id.nil? %>
+</p>
+
+<% if @owns || session[:is_admin] -%>
+  <%= link_to 'Edit', edit_instrument_path(@instrument) %> |
+<% end -%>
+<%= link_to 'Back', instruments_path %>

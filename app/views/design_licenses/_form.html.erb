@@ -1,0 +1,28 @@
+<%= form_for(@design_license) do |f| %>
+  <% if @design_license.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@design_license.errors.count, "error") %> prohibited this design_license from being saved:</h2>
+
+      <ul>
+      <% @design_license.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table>
+    <thead></thead>
+    <tbody>
+      <tr>
+  <div class="field">
+    <td><%= f.label :license_id %></td>
+    <td><%= f.collection_select(:license_id, @licenses, :id, :license_name) %></td>
+  </div>
+      </tr>
+    </tbody>
+  </table>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

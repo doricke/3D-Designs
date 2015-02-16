@@ -1,0 +1,43 @@
+<%= form_for(@design) do |f| %>
+  <% if @design.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@design.errors.count, "error") %> prohibited this design from being saved:</h2>
+
+      <ul>
+      <% @design.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <table>
+    <thead></thead>
+    <tbody>
+      <tr>
+  <div class="field">
+    <td><%= f.label :team_id %></td>
+    <td><%= f.collection_select(:team_id, @teams, :id, :team_name, {:include_blank => "No team"}) %></td>
+  </div>
+      </tr><tr>
+  <div class="field">
+    <td><%= f.label :instrument_id %></td>
+    <td><%= f.collection_select(:instrument_id, @instruments, :id, :instrument_name) %></td>
+  </div>
+      </tr><tr>
+  <div class="field">
+    <td><%= f.label :design_name %></td>
+    <td><%= f.text_field :design_name, :size => 80 %></td>
+  </div>
+      </tr><tr>
+  <div class="field">
+    <td><%= f.label :revision %></td>
+    <td><%= f.text_field :revision %></td>
+  </div>
+      </tr>
+    </tbody>
+  </table>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

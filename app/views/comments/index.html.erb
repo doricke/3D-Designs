@@ -1,0 +1,38 @@
+<h1>Comments</h1>
+
+<table cellpadding="2" cellspacing="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Rating</th>
+      <th>Updated at</th>
+      <th>Comments</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= @users_hash[comment.user_id].name if ! comment.user_id.nil? %></td>
+        <td align="center"><%= comment.rating %></td>
+        <td><%= comment.updated_at %></td>
+        <td><%= comment.comments.html_safe %></td>
+        <td><%= link_to 'Show', comment %></td>
+        <% if session[:is_owner] || (comment.user_id == session[:user_id]) -%>
+          <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+          <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else -%>
+          <td></td>
+          <td></td>
+        <% end -%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Comment', new_comment_path if (! session[:design_id].nil?) && (! session[:user_id].nil?) %>

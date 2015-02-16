@@ -1,0 +1,290 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead></thead>
+  <tbody>
+<tr>
+  <td><strong>User:</strong></td>
+  <td><%= @users_hash[@design.user_id].name if ! @users_hash[@design.user_id].nil? %></td>
+</tr><tr>
+  <td><strong>Team:</strong></td>
+  <td><%= @team.team_name if ! @team.nil? %></td>
+</tr><tr>
+  <td><strong>Instrument:</strong></td>
+  <td><%= @instrument.instrument_name if ! @instrument.nil? %></td>
+</tr><tr>
+  <td><strong>Design name:</strong></td>
+  <td><%= @design.design_name %></td>
+</tr><tr>
+  <td><strong>Revision:</strong></td>
+  <td><%= @design.revision %></td>
+</tr><tr>
+  <td><strong>Rating:</strong></td>
+  <td><%= @design.rating %></td>
+</tr><tr>
+  <td><strong>Views:</strong></td>
+  <td><%= @design.views %></td>
+</tr><tr>
+  <td><strong>Downloads:</strong></td>
+  <td><%= @design.downloads %></td>
+</tr><tr>
+  <td><strong>Created at:</strong></td>
+  <td><%= Tools.to_ampm(@design.created_at) %></td>
+</tr><tr>
+  <td><strong>Updated at:</strong></td>
+  <td><%= Tools.to_ampm(@design.updated_at) %></td>
+</tr>
+</tbody>
+</table>
+<br />
+<strong>Licenses</strong>
+<br />
+<% if @design_licenses.length > 0 -%>
+  <table cellpadding="0" border="0" class="display dataTable" id="example">
+    <thead>
+      <tr>
+        <th>License</th>
+        <th>Version</th>
+        <th>URL</th>
+        <% if @owns -%>
+          <th></th>
+        <% end -%>
+      </tr>
+    </thead>
+    <tbody>
+    <% @design_licenses.each do |design_license| -%>
+      <% license = @licenses_hash[design_license.license_id] -%>
+      <% if ! license.nil? -%>
+        <tr>
+          <td><%= license.license_name %></td>
+          <td align="center"><%= license.license_version %></td>
+          <td><%= license.license_url %></td>
+          <% if @owns -%>
+            <td><%= link_to 'Remove', design_license, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end -%>
+        </tr>
+      <% end -%>
+    <% end -%>
+    </tbody>
+  </table>
+<% end -%>
+<%= link_to 'Add a license', new_design_license_path if @owns %>
+<br /><br />
+
+<strong>Images</strong>
+<br />
+<% if @images.length > 0 -%>
+  <table cellpadding="0" border="0" class="display dataTable" id="example">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Thumbnail</th>
+        <th>See Image</th>
+        <% if @owns -%>
+          <th></th>
+        <% end -%>
+      </tr>
+    </thead>
+    <tbody>
+   <% @images.each do |image| -%>
+     <tr>
+       <td><%= image.image_name %></td>
+        <td><%= image.description %></td>
+        <td><%= image_tag(url_for(:controller => :images, :action => :show_img, :id => image.id), :ISMAP => 'false', :border => '0', :height => '100', :width => '100') %></td>
+        <td><%= link_to 'Show', image_path(image) %></td>
+        <% if @owns -%>
+          <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+     </tr>
+  <% end -%>
+    </tbody>
+  </table>
+<% end -%>
+<%= link_to 'Add an image', new_image_path if @owns %>
+<br /><br />
+
+<strong>Videos</strong>
+<br />
+<% if @videos.length > 0 -%>
+  <table cellpadding="0" border="0" class="display dataTable" id="example">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody>
+  <% @videos.each do |video| -%>
+    <tr>
+      <td><%= video.video_name %></td>
+      <td><%= video.video_description %></td>
+      <td><%= video.video_category %></td>
+    </tr>
+  <% end -%>
+    </tbody>
+  </table>
+<% end -%>
+<%= link_to 'Add a Video', new_video_path if @owns %>
+<br /><br />
+
+<strong>Publications</strong><br />
+<% if @papers.length > 0 -%>
+<table cellpadding="0" cellspacing="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>Authors</th>
+      <th>Title</th>
+      <th>Reference</th>
+      <th>URL</th>
+      <% if @owns -%>
+        <th></th>
+        <th></th>
+      <% end -%>
+    </tr>
+  </thead>
+  <tbody>
+    <% @papers.each do |paper| %>
+      <tr>
+        <td><%= paper.authors %></td>
+        <td><%= paper.title %></td>
+        <td><%= paper.reference %></td>
+        <td><%= paper.url %></td>
+        <% if @owns -%>
+          <td><%= link_to 'Edit', edit_paper_path(paper) %></td>
+          <td><%= link_to 'Destroy', paper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end -%>
+<%= link_to 'Add a reference', new_paper_path if @owns %>
+<br /><br />
+
+<strong>Performance</strong>
+<br />
+<% if @performances.length > 0 -%>
+<table cellpadding="0" cellspacing="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Metric</th>
+      <th>Rating</th>
+      <th>Date</th>
+      <th>Image</th>
+      <% if @owns -%>
+        <th></th>
+        <th></th>
+      <% end -%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @performances.each do |performance| %>
+      <tr>
+        <td><%= performance.name %></td>
+        <td><%= performance.description %></td>
+        <td align="center"><%= performance.metric %></td>
+        <td align="center"><%= performance.rating %></td>
+        <td><%= performance.updated_at %></td>
+        <td><%= link_to image_tag(url_for(:controller => :attachments, :action => :show_img, :id => performance.attachment_id), :ISMAP => 'false', :border => '0', :height => '100', :width => '100') if ! performance.attachment_id.nil? %></td>
+        <% if @owns -%>
+          <td><%= link_to 'Edit', edit_performance_path(performance) %></td>
+          <td><%= link_to 'Destroy', performance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end -%>
+<%= link_to 'Add Performance Data', new_performance_path if @owns %>
+<br /><br />
+
+<strong>Software</strong>
+<br />
+<% if @softwares.length > 0 -%>
+    <% @softwares.each do |software| %>
+      <table>
+        <thead></thead>
+        <tbody>
+          <tr>
+            <td><%= software.software_name %></td>
+            <td><%= software.description %></td>
+            <% if @owns -%>
+              <td><%= link_to 'Edit', edit_software_path(software) %></td>
+              <td><%= link_to 'Destroy', software, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end -%>
+          </tr>
+        </tbody>
+      </table>
+      <pre><%= software.attachment.view if ! software.attachment_id.nil? %></pre>
+    <% end -%>
+<% end -%>
+<%= link_to 'Add new Software', new_software_path if @owns %>
+<br /><br />
+
+<strong>People who have used this Design</strong>
+<br />
+<% if @useds.length > 0 -%>
+<table cellpadding="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Date</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @useds.each do |one_use| -%>
+    <tr>
+      <td><%= @users_hash[one_use.user_id].name if ! @users_hash[one_use.user_id].nil? %></td>
+      <td><%= Tools.to_ampm(one_use.created_at) %></td>
+      <td><%= one_use.notes.html_safe if (! one_use.notes.nil?) %></td>
+      <% if @owns -%>
+        <td><%= link_to 'Edit', edit_used_path(one_use) %></td>
+        <td><%= link_to 'Remove', one_use, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end -%>
+    </tr>
+    <% end -%>
+  </tbody>
+</table>
+<% end -%>
+<%= link_to 'Add a new use of this Design', new_used_path if ! session[:user_id].nil? %>
+<br /><br />
+
+<strong>Comments</strong>
+<br />
+<% if @comments.length > 0 -%>
+<table cellpadding="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Rating</th>
+      <th>Date</th>
+      <th>Comments</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| -%>
+        <tr>
+          <td><%= @users_hash[comment.user_id].name if ! @users_hash[comment.user_id].nil? %></td>
+          <td align="center"><%= comment.rating %></td>
+          <td><%= Tools.to_ampm(comment.updated_at) %></td>
+          <td><%= comment.comments.html_safe %></td>
+          <td><%= link_to 'Remove', comment, method: :delete, data: { confirm: 'Are you sure?' } if (comment.user_id == session[:user_id]) %></td>
+        </tr>
+      <% end -%>
+  </tbody>
+</table>
+<% end -%>
+<%= link_to 'Add your comment', new_comment_path if ! session[:user_id].nil? %>
+<br /><br />
+
+
+<br />
+<%= link_to 'Edit', edit_design_path(@design) if @owns %><br />
+<%= link_to 'Back', designs_path %>

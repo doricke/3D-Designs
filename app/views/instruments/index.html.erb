@@ -1,0 +1,37 @@
+<h1>Instruments</h1>
+
+<table cellpadding="2" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>Instrument type</th>
+      <th>Instrument name</th>
+      <th>Instrument model</th>
+      <th>Thumbnail</th>
+      <th></th>
+      <% if session[:is_admin] -%>
+        <th></th>
+        <th></th>
+      <% end -%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @instruments.each do |instrument| -%>
+      <tr>
+        <td><%= @instrument_types_hash[instrument.instrument_type_id].category if ! @instrument_types_hash[instrument.instrument_type_id].nil?  %></td>
+        <td><%= instrument.instrument_name %></td>
+        <td><%= instrument.instrument_model %></td>
+        <td><%= image_tag(url_for(:controller => :images, :action => :show_img, :id => instrument.image_id), :ISMAP => 'false', :border => '0', :height => '100', :width => '100') if ! instrument.image_id.nil? %></td>
+        <td><%= link_to 'Show', instrument %></td>
+        <% if session[:is_admin] -%>
+          <td><%= link_to 'Edit', edit_instrument_path(instrument) %></td>
+          <td><%= link_to 'Destroy', instrument, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Instrument', new_instrument_path if (! session[:user_id].nil?) %>

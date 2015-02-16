@@ -1,0 +1,36 @@
+<h1>Images</h1>
+
+<table cellpadding="2" cellspacing="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>Image name</th>
+      <th>Description</th>
+      <th>Picture</th>
+      <th></th>
+      <th></th>
+      <% if session[:is_owner] -%>
+        <th></th>
+        <th></th>
+      <% end -%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @images.each do |image| -%>
+      <tr>
+        <td><%= image.image_name %></td>
+        <td><%= image.description %></td>
+        <td><%= link_to image_tag(url_for(:controller => :images, :action => :show_img, :id => image.id)) %></td>
+        <td><%= link_to 'Show', image %></td>
+        <% if session[:is_owner] -%>
+          <td><%= link_to 'Edit', edit_image_path(image) %></td>
+          <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Image', new_image_path if (! session[:design_id].nil?) && (! session[:user_id].nil?) %>

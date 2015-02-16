@@ -1,0 +1,39 @@
+<h1>Papers</h1>
+
+<table cellpadding="2" cellspacing="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>Design</th>
+      <th>Link</th>
+      <th>Authors</th>
+      <th>Title</th>
+      <th>Reference</th>
+      <th></th>
+      <% if session[:is_owner] -%>
+        <th></th>
+        <th></th>
+      <% end -%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @papers.each do |paper| %>
+      <tr>
+        <td><%= paper.design_id %></td>
+        <td><%= paper.link_id %></td>
+        <td><%= paper.authors %></td>
+        <td><%= paper.title %></td>
+        <td><%= paper.reference %></td>
+        <td><%= link_to 'Show', paper %></td>
+        <% if session[:is_owner] -%>
+          <td><%= link_to 'Edit', edit_paper_path(paper) %></td>
+          <td><%= link_to 'Destroy', paper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Paper', new_paper_path if (! session[:design_id].nil?) && (! session[:user_id].nil?) %>

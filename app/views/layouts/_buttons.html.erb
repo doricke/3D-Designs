@@ -1,0 +1,38 @@
+<br />
+<div id="menu">
+	<ul class="menu">
+		<li><%= link_to 'Design', {:controller => "designs",  :method => "index"}, {:method => :get} %></li>
+    <li><%= link_to 'Instruments', {:controller => "instruments",  :method => "index"},  {:method => :get} %></li>
+    <li><%= link_to 'Instruments Types', {:controller => "instrument_types", :method => "index"}, {:method => :get} %></li>
+    <li><%= link_to 'Licenses', {:controller => "licenses", :method => "index"},  {:method => :get} %></li>
+    <li><%= link_to "Teams", {:controller => "teams", :action => "index"}, {:method => :get} %></li>
+		<% if session[:is_admin] -%>
+ 		  <li><%= link_to "Users", {:controller => "users", :action => "index"}, {:method => :get} %></li>
+		<% end -%>
+		<% if session[:user_id].nil? -%>
+      <li><%= link_to "Login", {:controller => "logins", :action => "index"}, {:method => :get} %></li>    
+    <% else -%>
+		  <li><%= link_to "Logout", {:controller => "logins", :action => "logout"}, {:method => :get} %></li>
+		<% end -%>		
+	</ul>
+</div>
+
+<hr />
+<% if ! session[:design_id].nil? -%>
+<div id="menu">
+  <ul class="menu">
+    <li><%= link_to 'Show', {:controller => "designs", :action => :show, :id => session[:design_id]}, {:method => :get} %></li>
+    <li><%= link_to 'Images', {:controller => "images",  :method => "index"}, {:method => :get} %></li>
+    <li><%= link_to 'Videos', {:controller => "videos",  :method => "index"},  {:method => :get} %></li>
+    <li><%= link_to 'Performance', {:controller => "performances", :method => "index"}, {:method => :get} %></li>
+    <li><%= link_to 'Software', {:controller => "softwares", :method => "index"},  {:method => :get} %></li>
+    <li><%= link_to 'Files', {:controller => "attachments", :method => "index"},  {:method => :get} %></li>
+    <li><%= link_to "Uses", {:controller => "useds", :action => "index"}, {:method => :get} %></li>
+    <li><%= link_to "Papers", {:controller => "papers", :action => "index"}, {:method => :get} %></li>
+    <li><%= link_to "Attributes", {:controller => "attribute_values", :action => "index"}, {:method => :get} %></li>    
+    <li><%= link_to "Comments", {:controller => "comments", :action => "index"}, {:method => :get} %></li>    
+    <li><%= link_to "Derived", {:controller => "deriveds", :action => "index"}, {:method => :get} %></li>    
+    <li><%= link_to "Team Members", {:controller => "members", :action => "index"}, {:method => :get} %></li>
+  </ul>
+</div>
+<% end -%>

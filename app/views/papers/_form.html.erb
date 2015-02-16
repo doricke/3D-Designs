@@ -1,0 +1,44 @@
+<%= form_for(@paper) do |f| %>
+  <% if @paper.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@paper.errors.count, "error") %> prohibited this paper from being saved:</h2>
+
+      <ul>
+      <% @paper.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table>
+    <thead></thead>
+    <tbody>
+      <tr>
+  <div class="field">
+    <td><%= f.label :title %></td>
+    <td><%= f.text_field :title, :size => 80 %></td>
+  </div>
+      </tr><tr>
+  <div class="field">
+    <td><%= f.label :authors %></td>
+    <td><%= f.text_field :authors, :size => 80 %></td>
+  </div>
+      </tr><tr>
+  <div class="field">
+    <td><%= f.label :reference %></td>
+    <td><%= f.text_field :reference, :size => 80 %></td>
+  </div>
+      </tr><tr>
+  <div class="field">
+    <td><%= f.label :url %></td>
+    <td><%= f.text_field :url, :size => 80 %></td>
+  </div>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

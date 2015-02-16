@@ -1,0 +1,27 @@
+<h1>Attributes</h1>
+
+<table cellpadding="2" cellspacing="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>Attribute name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attributes.each do |attribute| %>
+      <tr>
+        <td><%= attribute.attribute_name %></td>
+        <td><%= link_to 'Show', attribute %></td>
+        <td><%= link_to 'Edit', edit_attribute_path(attribute) %></td>
+        <td><%= link_to 'Destroy', attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attribute', new_attribute_path if (! session[:design_id].nil?) && (! session[:user_id].nil?) %>

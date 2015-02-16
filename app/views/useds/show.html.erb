@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead></thead>
+  <tbody>
+    <tr>
+<p>
+  <td><strong>User:</strong></td>
+  <td><%= @used.user.name %></td>
+</p>
+    </tr><tr>
+<p>
+  <td><strong>Notes:</strong></td>
+  <td><%= @used.notes.html_safe %></td>
+</p>
+    </tr><tr>
+<p>
+  <td><strong>Created at:</strong></td>
+  <td><%= @used.created_at %></td>
+</p>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_used_path(@used) %> |
+<%= link_to 'Back', useds_path %>

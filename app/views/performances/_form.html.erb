@@ -1,0 +1,48 @@
+<%= form_for(@performance, :html => {:multipart=>true}) do |f| %>
+  <% if @performance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@performance.errors.count, "error") %> prohibited this performance from being saved:</h2>
+
+      <ul>
+      <% @performance.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table>
+    <thead></thead>
+    <tbody>
+      <tr>
+  <div class="field">
+    <td><%= f.label :name %></td>
+    <td><%= f.text_field :name, :size => 80 %></td>
+  </div>
+      </tr><tr>
+  <div class="field">
+    <td><%= f.label :description %></td>
+    <td><%= f.text_field :description, :size => 80 %></td>
+  </div>
+      </tr><tr>
+  <div class="field">
+    <td><%= f.label :metric %></td>
+    <td><%= f.text_field :metric %></td>
+  </div>
+      </tr><tr>
+  <div class="field">
+    <td><%= f.label :rating %></td>
+    <td><%= f.text_field :rating %></td>
+  </div>
+      </tr><tr>
+  <div class="field">
+    <td><%= f.label :file %></td>
+    <td><%= f.file_field("datafile") %></td>
+  </div>
+      </tr>
+    </tbody>
+  </table>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

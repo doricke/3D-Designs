@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Design:</strong>
+  <%= @derived.design_id %>
+</p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @derived.source_id %>
+</p>
+
+<p>
+  <strong>Derived type:</strong>
+  <%= @derived.derived_type %>
+</p>
+
+<%= link_to 'Edit', edit_derived_path(@derived) %> |
+<%= link_to 'Back', deriveds_path %>

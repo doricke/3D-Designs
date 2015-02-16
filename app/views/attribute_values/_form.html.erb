@@ -1,0 +1,52 @@
+<%= form_for(@attribute_value) do |f| %>
+  <% if @attribute_value.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@attribute_value.errors.count, "error") %> prohibited this attribute_value from being saved:</h2>
+
+      <ul>
+      <% @attribute_value.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<table>
+  <thead></thead>
+  <tbody>
+    <tr>
+  <div class="field">
+    <td><%= f.label :attribute_id %></td>
+    <td><%= f.collection_select(:attribute_id, @attributes, :id, :attribute_name) %></td>
+  </div>
+    </tr><tr>
+  <div class="field">
+    <td><%= f.label :attribute_type %></td>
+    <td><%= select_tag(:attribute_type_id, options_for_select([['boolean', 'boolean'], ['float', 'float'], ['int', 'int'], ['string', 'string']])) %></td>
+  </div>
+    </tr><tr>
+  <div class="field">
+    <td><%= f.label :attribute_int %></td>
+    <td><%= f.number_field :attribute_int %></td>
+  </div>
+    </tr><tr>
+  <div class="field">
+    <td><%= f.label :attribute_float %></td>
+    <td><%= f.text_field :attribute_float %></td>
+  </div>
+    </tr><tr>
+  <div class="field">
+    <td><%= f.label :attribute_string %></td>
+    <td><%= f.text_field :attribute_string %></td>
+  </div>
+    </tr><tr>
+  <div class="field">
+    <td><%= f.label :attribute_boolean %></td>
+    <td><%= f.check_box :attribute_boolean %></td>
+  </div>
+  </tbody>
+</table>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

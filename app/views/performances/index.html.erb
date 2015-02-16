@@ -1,0 +1,43 @@
+<h1>Performance Data</h1>
+
+<table cellpadding="2" cellspacing="0" border="0" class="display dataTable" id="example">
+  <thead>
+    <tr>
+      <th>Design</th>
+      <th>Attachment</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Metric</th>
+      <th>Rating</th>
+      <th>Updated at</th>
+      <th></th>
+      <% if session[:is_owner] -%>
+        <th></th>
+        <th></th>
+      <% end -%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @performances.each do |performance| %>
+      <tr>
+        <td><%= performance.design_id %></td>
+        <td><%= performance.attachment_id %></td>
+        <td><%= performance.name %></td>
+        <td><%= performance.description %></td>
+        <td><%= performance.metric %></td>
+        <td><%= performance.rating %></td>
+        <td><%= performance.updated_at %></td>
+        <td><%= link_to 'Show', performance %></td>
+        <% if session[:is_owner] -%>
+          <td><%= link_to 'Edit', edit_performance_path(performance) %></td>
+          <td><%= link_to 'Destroy', performance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Performance', new_performance_path if (! session[:design_id].nil?) && (! session[:user_id].nil?) %>

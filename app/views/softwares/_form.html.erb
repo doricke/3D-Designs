@@ -1,0 +1,38 @@
+<%= form_for(@software, :html => {:multipart=>true}) do |f| %>
+  <% if @software.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@software.errors.count, "error") %> prohibited this software from being saved:</h2>
+
+      <ul>
+      <% @software.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table>
+    <thead></thead>
+    <tbody>
+      <tr>
+  <div class="field">
+    <td><%= f.label :software_name %></td>
+    <td><%= f.text_field :software_name, :size => 80 %></td>
+  </div>
+      </tr><tr>
+  <div class="field">
+    <td><%= f.label :description %></td>
+    <td><%= f.text_area :description, :size => 80 %></td>
+  </div>
+      </tr><tr>
+  <div class="field">
+    <td><%= f.label :file %></td>
+    <td><%= f.file_field("datafile") %></td>
+  </div>
+      </tr>
+    </tbody>
+  </table>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
