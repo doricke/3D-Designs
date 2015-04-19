@@ -5,7 +5,7 @@ class Tools
   def self.to_hash(array)
     hash = {}
     array.each do |record|
-      hash[rec.id] = record
+      hash[record.id] = record
     end  # do
     return hash
   end  # to_hash
