@@ -27,12 +27,9 @@ class CreateInitData < ActiveRecord::Migration
     
     printer_3d = InstrumentType.create(:category => "3D Printer")
     
-    touch_image_id = Image.load_image(nil, '3DTouch_3D.png', 'instrument', 'png', '3D Touch 3D')
-    puts "touch_image: #{touch_image_id}"
-    
     puts "Instruments:"
     cube = Instrument.create(:instrument_type_id => printer_3d.id, :instrument_name => "3D Systems Cube 3D Printer", :instrument_model => "2nd Gen, Silver" )
-    touch = Instrument.create(:image_id => touch_image_id, :instrument_type_id => printer_3d.id, :instrument_name => "3D Touch 3D Printer", :instrument_model => "3D" )
+    touch = Instrument.create(:instrument_type_id => printer_3d.id, :instrument_name => "3D Touch 3D Printer", :instrument_model => "3D" )
     
     puts "Licenses:"
     gnu3 = License.create(:license_name => "The GNU General Public License", :license_version => "3.0", :license_url => "http://www.gnu.org/licenses/gpl.html" )
